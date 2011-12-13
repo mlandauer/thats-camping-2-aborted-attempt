@@ -1,3 +1,8 @@
-.footer.ui-block-b {
+.footer .ui-block-b {
   text-align: center;
+}
+
+.footer .ui-block-c a {
+  float: right;
+  right: 2em;
 }
