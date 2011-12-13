@@ -23,6 +23,11 @@
   <script type="text/x-handlebars">
     {{#view App.MyView}}
       <h1>Hello world!</h1>
+      {{#collection contentBinding="App.campsitesController"}}
+        <p>{{content.longName}}</p>
+        <p>{{content.latitude}}</p>
+        <p>{{content.longitude}}</p>
+      {{/collection}}
     {{/view}}
   </script>
 
