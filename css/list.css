@@ -1,0 +1,24 @@
+.footer .ui-block-b {
+  text-align: center;
+}
+
+.footer .ui-block-c a {
+  float: right;
+  right: 2em;
+}
+
+.home-list h2 {
+  text-align: right;
+  padding-right: 1em;
+}
+
+.ui-li-aside {
+  float: left;
+  text-align: left;
+  margin: 0.6em 0;
+  color: #000;
+}
+
+.ui-li-aside strong {
+  font-size: 16px;
+}
