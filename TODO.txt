@@ -9,13 +9,6 @@
 
 Your Ember.js project is almost ready! Here's how to get started:
 
-- Change lang="en" in the <html> tag if your page is not in English
-
-- Fill:
-  <title></title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
 - Change the favicons
 
 - Start writing your app in js/app.js.
