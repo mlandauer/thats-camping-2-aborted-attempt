@@ -1,10 +1,19 @@
 var App = Em.Application.create();
 
-App.MyView = Em.View.extend({
-  mouseDown: function() {
-    window.alert("hello world!");
-  },
+App.campsitesController = Em.ArrayProxy.create({
+  // Initialize the array controller with an empty array.
+  content: [] 
 });
+
+view = Em.View.create({
+  templateName: 'campsites', 
+  didInsertElement: function() {
+    $('ul').listview();
+  },
+  contentBinding: 'App.campsitesController.content'
+});
+
+view.appendTo('div[data-role="content"]');
 
 App.Campsite = Em.Object.extend({
   /* null values mean unknown */
@@ -23,11 +32,6 @@ App.Campsite = Em.Object.extend({
   trailers: null,
   car: null,
   description: null
-});
-
-App.campsitesController = Em.ArrayProxy.create({
-  // Initialize the array controller with an empty array.
-  content: [] 
 });
 
 c1 = App.Campsite.create({

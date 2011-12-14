@@ -1,39 +1,58 @@
-<!doctype html>
-<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+<!DOCTYPE html>
+<html>
+  <head>
   <title>That's Camping!</title>
-  <meta name="description" content="Find out about campsites in NSW near you">
-  <meta name="author" content="Matthew Landauer and Henare Degan">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=2">
-
-  <!--[if lt IE 9]>
-  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/jquery.mobile-1.0.min.css" />
+  <link rel="stylesheet" href="css/list.css" />
+  <script type="text/x-handlebars" data-template-name="campsites">
+    <ul data-role="listview" class="home-list">
+      {{#each content}}
+        <li>
+          <a href="murphys_glen.html">
+            <p class="ui-li-aside">
+              <strong>2 km S</strong>
+            </p>
+            <h2>{{shortName}}<br>Blue Mountains NP</h2>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </script>
 </head>
 <body>
-  <script type="text/x-handlebars">
-    {{#view App.MyView}}
-      <h1>Hello world!</h1>
-      {{#collection contentBinding="App.campsitesController"}}
-        <p>{{content.longName}}</p>
-        <p>{{content.latitude}}</p>
-        <p>{{content.longitude}}</p>
-      {{/collection}}
-    {{/view}}
-  </script>
+<div data-role="page">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.6.1.min.js"%3E%3C/script%3E'))</script>
-  <script src="js/libs/ember-0.9.min.js"></script>
-  <script src="js/app.js"></script>
+  <div data-role="header" data-theme="b" data-position="fixed">
+    <h1>Camping near you in NSW</h1>
+  </div><!-- /header -->
+
+  <div data-role="content">
+  </div><!-- /content -->
+
+  <div data-role="footer" data-theme="b" data-position="fixed" class="ui-bar footer">
+    <div class="ui-grid-b">
+      <div class="ui-block-a">
+        <a href="#" data-role="button" data-icon="refresh" data-iconpos="notext">Refresh location</a>
+      </div>
+      <div class="ui-block-b">
+        <div data-role="controlgroup" data-type="horizontal">
+          <a href="#" data-role="button" class="ui-btn-active">List</a>
+          <a href="#" data-role="button">Map</a>
+        </div>
+      </div>
+      <div class="ui-block-c">
+        <a href="#" data-role="button" data-icon="info" data-iconpos="notext">Help</a>
+      </div>
+    </div><!-- /grid-b -->
+  </div><!-- /navbar -->
+
+</div><!-- /page -->
+
+<script type="text/javascript" src="js/libs/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="js/libs/jquery.mobile-1.0.min.js"></script>
+<script type="text/javascript" src="js/libs/ember-0.9.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+
 </body>
 </html>
