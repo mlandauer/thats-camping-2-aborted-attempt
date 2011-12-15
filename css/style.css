@@ -33,3 +33,13 @@
 p.ui-li-desc {
   white-space: normal;
 }
+
+.facilities p, .access p {
+  display: inline;
+  font-size: 12px;
+}
+
+.facilities h4, .access h4 {
+  display:inline;
+  font-size: 12px;
+}
