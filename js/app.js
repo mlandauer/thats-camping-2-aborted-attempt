@@ -7,6 +7,35 @@ App.campsitesController = Em.ArrayProxy.create({
     App.userPosition.set('latitude', latitude);
     App.userPosition.set('longitude', longitude);
   },
+
+  fetchCampsites: function(){
+    $.ajax('/data/campsites.json', {
+      success: function(data){
+        App.campsitesController.beginPropertyChanges();
+        data.forEach(function(item){
+          var campsite = App.Campsite.create({
+                shortName: item.shortName,
+                longName: item.longName,
+                latitude: item.latitude,
+                longitude: item.longitude,
+                webId: item.webId,
+                parkWebId: item.parkWebId,
+                toilets: item.toilets,
+                picnicTables: item.picnicTables,
+                barbecues: item.barbecues,
+                showers: item.showers,
+                drinkingWater: item.drinkingWater,
+                caravans: item.caravans,
+                trailers: item.trailers,
+                car: item.car,
+                description: item.description
+          });
+          App.campsitesController.pushObject(campsite);
+        });
+        App.campsitesController.endPropertyChanges();
+      }
+    });
+  }
 });
 
 view = Em.View.create({
@@ -98,8 +127,12 @@ App.Campsite = Em.Object.extend({
   }.property('distance'),
 
   bearingText: function() {
+    var bearing = this.get('bearing');
+    if (bearing === null)
+      return "";
+
     // Dividing the compass into 8 sectors that are centred on north
-    var sector = Math.floor(((this.get('bearing') + 22.5) % 360.0) / 45.0);
+    var sector = Math.floor(((bearing + 22.5) % 360.0) / 45.0);
     var sectorNames = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
     return sectorNames[sector];  
   }.property('bearing'),
@@ -107,8 +140,10 @@ App.Campsite = Em.Object.extend({
   bearing: function() {
     var userLatitude = this.get('userLatitude');
     var userLongitude = this.get('userLongitude');
-    if (userLatitude && userLongitude) {
-      return calculateBearing(userLatitude, userLongitude, this.get('latitude'), this.get('longitude'));;      
+    var latitude = this.get('latitude');
+    var longitude = this.get('longitude');
+    if (userLatitude && userLongitude && latitude && longitude) {
+      return calculateBearing(userLatitude, userLongitude, latitude, longitude);;      
     }
     else {
       return null;      
@@ -120,8 +155,10 @@ App.Campsite = Em.Object.extend({
   distance: function() {
     var userLatitude = this.get('userLatitude');
     var userLongitude = this.get('userLongitude');
-    if (userLatitude && userLongitude) {
-      distance = calculateDistance(userLatitude, userLongitude, this.get('latitude'), this.get('longitude'));
+    var latitude = this.get('latitude');
+    var longitude = this.get('longitude');
+    if (userLatitude && userLongitude && latitude && longitude) {
+      distance = calculateDistance(userLatitude, userLongitude, latitude, longitude);
       return distance;      
     }
     else {
@@ -130,44 +167,7 @@ App.Campsite = Em.Object.extend({
   }.property('userLatitude', 'userLongitude', 'latitude', 'longitude')
 });
 
-c1 = App.Campsite.create({
-  shortName: "Acacia Flat",
-  longName: "Acacia Flat",
-  latitude: -33.6149,
-  longitude: 150.3553,
-  webId: "c20080416100015976",
-  parkWebId: "N0004",
-  toilets: "non_flush",
-  picnicTables: false,
-  barbecues: "wood",
-  showers: "none",
-  drinkingWater: false,
-  caravans: false,
-  trailers: false,
-  car: false,
-  description: "Explore the \"cradle of conservation\", the Blue Gum Forest. Enjoy birdwatching, long walks and plenty of photogenic flora."
-});
-
-c2 = App.Campsite.create({
-  shortName: "Aragunnu",
-  longName: "Aragunnu campground",
-  latitude: -36.585,
-  longitude: 150.0419,
-  webId: "c20080416100011852",
-  parkWebId: "N0021",
-  toilets: "non_flush",
-  picnicTables: false,
-  barbecues: "wood",
-  showers: "none",
-  drinkingWater: false,
-  caravans: false,
-  trailers: true,
-  car: true,
-  description: ""
-});
-
-App.campsitesController.pushObject(c1);
-App.campsitesController.pushObject(c2);
+App.campsitesController.fetchCampsites();
 
 // check for Geolocation support
 if (navigator.geolocation) {
