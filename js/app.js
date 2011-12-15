@@ -72,3 +72,22 @@ c2 = App.Campsite.create({
 
 App.campsitesController.pushObject(c1);
 App.campsitesController.pushObject(c2);
+
+// check for Geolocation support
+if (navigator.geolocation) {
+  console.log('Geolocation is supported!');
+}
+else {
+  console.log('Geolocation is not supported for this Browser/OS version yet.');
+}
+
+window.onload = function() {
+  var startPos;
+  navigator.geolocation.getCurrentPosition(function(position) {
+    startPos = position;
+    console.log("Latitude, Longitude", startPos.coords.latitude, startPos.coords.longitude);
+  }, function(error) {
+    alert('Error occurred. Error code: ' + error.code);
+  });
+};
+
