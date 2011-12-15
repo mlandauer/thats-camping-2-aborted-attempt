@@ -13,23 +13,7 @@ App.campsitesController = Em.ArrayProxy.create({
       success: function(data){
         App.campsitesController.beginPropertyChanges();
         data.forEach(function(item){
-          var campsite = App.Campsite.create({
-                shortName: item.shortName,
-                longName: item.longName,
-                latitude: item.latitude,
-                longitude: item.longitude,
-                webId: item.webId,
-                parkWebId: item.parkWebId,
-                toilets: item.toilets,
-                picnicTables: item.picnicTables,
-                barbecues: item.barbecues,
-                showers: item.showers,
-                drinkingWater: item.drinkingWater,
-                caravans: item.caravans,
-                trailers: item.trailers,
-                car: item.car,
-                description: item.description
-          });
+          var campsite = App.Campsite.create(item);
           App.campsitesController.pushObject(campsite);
         });
         App.campsitesController.endPropertyChanges();
