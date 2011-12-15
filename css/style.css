@@ -29,3 +29,7 @@
 .footer.detail {
   text-align: center;
 }
+
+p.ui-li-desc {
+  white-space: normal;
+}
