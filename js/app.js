@@ -171,7 +171,7 @@ window.onload = function() {
   });
   // Continue watching the position continuously
   navigator.geolocation.watchPosition(function(position) {
-    App.campsitesController.updateUserPosition(startPos.coords.latitude, startPos.coords.longitude);
+    App.campsitesController.updateUserPosition(position.coords.latitude, position.coords.longitude);
   });
 };
 
