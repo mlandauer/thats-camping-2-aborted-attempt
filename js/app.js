@@ -22,10 +22,23 @@ App.campsitesController = Em.ArrayProxy.create({
   }
 });
 
+App.CampsiteView = Ember.View.extend({
+  didInsertElement: function() {
+    // VERY DUMB and slow - gets called on every single insert of a campsite into the DOM
+    $('ul').listview('refresh');
+    console.log("CampsiteView didInsertElement");
+  }
+});
+
 App.CampsitesView = Em.CollectionView.extend({
   attributeBindings: ['data-role'],
-  'data-role': 'listview'
+  'data-role': 'listview',
+  didInsertElement: function() {
+    console.log("CampsitesView didInsertElement");
+  },
+  itemViewClass: App.CampsiteView
 });
+
 
 view = Em.View.create({
   templateName: 'campsites', 
