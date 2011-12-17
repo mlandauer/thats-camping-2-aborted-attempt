@@ -191,7 +191,9 @@ App.Campsite = Em.Object.extend({
     else {
       return null;      
     }
-  }.property('userLatitude', 'userLongitude', 'latitude', 'longitude')
+  }.property('userLatitude', 'userLongitude', 'latitude', 'longitude'),
+
+  parkShortName: "Blue Mountains NP"
 });
 
 // check for Geolocation support
