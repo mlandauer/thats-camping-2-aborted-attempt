@@ -48,8 +48,6 @@ view = Em.View.create({
   contentBinding: 'App.campsitesController.content'
 });
 
-view.appendTo('div[data-role="content"]');
-
 App.userPosition = Em.Object.create({
   latitude: null,
   longitude: null  
@@ -169,8 +167,6 @@ App.Campsite = Em.Object.extend({
   }.property('userLatitude', 'userLongitude', 'latitude', 'longitude')
 });
 
-App.campsitesController.fetchCampsites();
-
 // check for Geolocation support
 if (navigator.geolocation) {
   console.log('Geolocation is supported!');
@@ -192,4 +188,7 @@ window.onload = function() {
     App.campsitesController.updateUserPosition(position.coords.latitude, position.coords.longitude);
   });
 };
+
+App.campsitesController.fetchCampsites();
+view.appendTo('div[data-role="content"]');
 
