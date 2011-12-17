@@ -213,7 +213,9 @@ App.Campsite = Em.Object.extend({
     }
   }.property('userLatitude', 'userLongitude', 'latitude', 'longitude'),
 
-  parkShortName: "Blue Mountains NP"
+  parkShortName: function() {
+    return this.get("park").get("shortName");
+  }.property('park'),
 });
 
 // check for Geolocation support
