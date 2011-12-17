@@ -1,5 +1,7 @@
 var App = Em.Application.create();
 
+App.parksController = Em.ArrayProxy.create();
+
 App.campsitesController = Em.ArrayProxy.create({
   // Initialize the array controller with an empty array.
   content: [],
@@ -35,15 +37,35 @@ App.campsitesController = Em.ArrayProxy.create({
     App.userPosition.set('longitude', longitude);
   },
 
-  fetchCampsites: function(){
-    $.ajax('/data/campsites.json', {
+  fetchParksAndCampsites: function(){
+    $.ajax('/data/data.json', {
       success: function(data){
+        var all_parks = [];
+        var all_campsites = [];
+
+        data.forEach(function(parksItem){
+          var campsites = [];
+          park = App.Park.create(parksItem);
+          parksItem.campsites[0].forEach(function(campsiteItem){
+            campsiteItem.park = park;
+            var campsite = App.Campsite.create(campsiteItem);
+            all_campsites.push(campsite);
+            campsites.push(campsite);
+          });
+          park.set("campsites", campsites);
+          all_parks.push(park);
+        });
+
         App.campsitesController.beginPropertyChanges();
-        data.forEach(function(item){
-          var campsite = App.Campsite.create(item);
+        all_campsites.forEach(function(campsite){
           App.campsitesController.pushObject(campsite);
         });
         App.campsitesController.endPropertyChanges();
+        App.campsitesController.beginPropertyChanges();
+        all_parks.forEach(function(park){
+          App.parksController.pushObject(park);
+        });
+        App.parksController.endPropertyChanges();
       }
     });
   }
@@ -109,6 +131,8 @@ function calculateBearing(lat1, lon1, lat2, lon2) {
   var bearing = (Math.atan2(y, x).toDeg() + 360.0) % 360;
   return bearing;
 }
+
+App.Park = Em.Object.extend();
 
 App.Campsite = Em.Object.extend({
   /* null values mean unknown */
@@ -214,6 +238,6 @@ window.onload = function() {
   });
 };
 
-App.campsitesController.fetchCampsites();
+App.campsitesController.fetchParksAndCampsites();
 view.appendTo('div[data-role="content"]');
 
