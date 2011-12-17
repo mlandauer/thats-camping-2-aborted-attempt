@@ -3,6 +3,33 @@ var App = Em.Application.create();
 App.campsitesController = Em.ArrayProxy.create({
   // Initialize the array controller with an empty array.
   content: [],
+
+  sortedCampsites: function() {
+    var content = this.get('content');
+    var campsitesWithDistance = content.filter(function(c) {
+      if (c.get("distance")) {
+        return YES;
+      }
+      else {
+        return NO;
+      }
+    }, content);
+    return campsitesWithDistance.sort(function(a, b) {
+      var distanceA = a.get('distance'),
+          distanceB = b.get('distance');
+
+      if (distanceA < distanceB) {
+        return -1;
+      }
+      else if (distanceA > distanceB) {
+        return 1;
+      }
+      else {
+        return 0
+      }
+    });
+  }.property('@each.distance').cacheable(),
+
   updateUserPosition: function(latitude, longitude) {
     App.userPosition.set('latitude', latitude);
     App.userPosition.set('longitude', longitude);
@@ -45,7 +72,7 @@ view = Em.View.create({
   didInsertElement: function() {
     $('ul').listview();
   },
-  contentBinding: 'App.campsitesController.content'
+  contentBinding: 'App.campsitesController.sortedCampsites'
 });
 
 App.userPosition = Em.Object.create({
