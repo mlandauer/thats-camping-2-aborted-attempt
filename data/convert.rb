@@ -22,3 +22,15 @@ end
 
 convert_plist_to_json('Campsites.plist', 'campsites.json')
 convert_plist_to_json('Parks.plist', 'parks.json')
+
+# Merge campsites and parks into one file
+all_campsites = load_plist('Campsites.plist')
+all_parks = load_plist('Parks.plist')
+
+data = all_parks.map do |park|
+  # Find all campsites that are in this park
+  campsites = all_campsites.find_all{|campsite| campsite["parkWebId"] == park["webId"]}
+  park.merge("campsites" => [campsites])
+end
+
+write_json(data, "data.json")
