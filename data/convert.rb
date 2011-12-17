@@ -6,11 +6,18 @@ require 'rubygems'
 require 'plist'
 require 'json'
 
-def convert_plist_to_json(input, output)
-  result = Plist::parse_xml(File.join(File.dirname(__FILE__), input))
+def load_plist(input)
+  Plist::parse_xml(File.join(File.dirname(__FILE__), input))
+end
+
+def write_json(data, output)
   File.open(File.join(File.dirname(__FILE__), output), 'w') do |f|
-    f.write(JSON.pretty_generate(result))
+    f.write(JSON.pretty_generate(data))
   end
+end
+
+def convert_plist_to_json(input, output)
+  write_json(load_plist(input), output)
 end
 
 convert_plist_to_json('Campsites.plist', 'campsites.json')
