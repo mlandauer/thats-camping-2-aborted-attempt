@@ -22,6 +22,11 @@ App.campsitesController = Em.ArrayProxy.create({
   }
 });
 
+App.CampsitesView = Em.CollectionView.extend({
+  attributeBindings: ['data-role'],
+  'data-role': 'listview'
+});
+
 view = Em.View.create({
   templateName: 'campsites', 
   didInsertElement: function() {
