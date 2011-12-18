@@ -241,5 +241,5 @@ window.onload = function() {
 };
 
 App.campsitesController.fetchParksAndCampsites();
-view.appendTo('div[data-role="content"]');
+view.appendTo('#campsites');
 
