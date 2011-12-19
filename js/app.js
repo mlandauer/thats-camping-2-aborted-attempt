@@ -1,5 +1,24 @@
 var App = Em.Application.create();
 
+App.appController = Em.Object.create({
+  campsiteDetailPage: function(eventType, matchObj) {
+    var webId = App.router.getParams(matchObj[1])["id"];
+    console.log("campsiteDetailPage webId", webId);
+    // Load campsite based on the id
+    var campsite = App.campsitesController.findProperty("webId", webId);
+    console.log("campsiteDetailPage campsite", campsite);
+    App.appController.set("campsite", campsite);
+  },
+  campsitesPage: function() {
+    console.log("campsitesPage");
+  }
+});
+
+App.router = new $.mobile.Router([
+  { "#campsites$": "campsitesPage" },
+  { "#campsite([?].*)?$": "campsiteDetailPage" },
+], App.appController);
+
 App.parksController = Em.ArrayProxy.create();
 
 App.campsitesController = Em.ArrayProxy.create({
