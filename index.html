@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="css/jquery.mobile-1.0.min.css" />
   <script type="text/x-handlebars" data-template-name="campsites">
     {{#collection App.CampsitesView contentBinding="content" tagName="ul" classNames="home-list"}}
-      <a href="#campsite" data-transition="none">
+      <a {{bindAttr href="content.campsiteUrl"}} data-transition="none">
         <p class="ui-li-aside">
           <strong>{{content.distanceAndBearingText}}</strong>
         </p>

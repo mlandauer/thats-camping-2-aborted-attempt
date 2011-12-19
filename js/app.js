@@ -216,6 +216,11 @@ App.Campsite = Em.Object.extend({
   parkShortName: function() {
     return this.get("park").get("shortName");
   }.property('park'),
+
+  campsiteUrl: function() {
+    var webId = this.get("webId");
+    return "#campsite?id=" + webId;
+  }.property('webId')
 });
 
 // check for Geolocation support
