@@ -275,7 +275,22 @@ App.Campsite = Em.Object.extend({
   campsiteUrl: function() {
     var webId = this.get("webId");
     return "#campsite?id=" + webId;
-  }.property('webId')
+  }.property('webId'),
+
+  // Convenience wrappers around some of the properties
+  hasFlushToilets: function() { return this.get("toilets") == "flush"; }.property('toilets'),
+  hasNonFlushToilets: function() { return this.get("toilets") == "non_flush"; }.property('toilets'),
+  hasToilets: function() { return this.get("toilets") != "none"; }.property('toilets'),
+  hasWoodBarbecuesFirewoodSupplied: function() { return this.get("barbecues") == "wood_supplied"; }.property('barbecues'),
+  hasWoodBarbecuesBringYourOwn: function() { return this.get("barbecues") == "wood_bring_your_own"; }.property('barbecues'),
+  hasWoodBarbecues: function() {
+    return this.get("barbecues") == "wood" || this.get("hasWoodBarbecuesFirewoodSupplied") || this.get("hasWoodBarbecuesBringYourOwn");
+  }.property('barbecues', 'hasWoodBarbecuesFirewoodSupplied', 'hasWoodBarbecuesBringYourOwn'),
+  hasGasElectricBarbecues: function() { return this.get("barbecues") == "gas_electric"; }.property('barbecues'),
+  hasBarbecues: function() { return this.get("barbecues") != "none"; }.property('barbecues'),
+  hasHotShowers: function() { return this.get("showers") == "hot"; }.property('showers'),
+  hasColdShowers: function() { return this.get("showers") == "cold"; }.property('showers'),
+  hasShowers: function() { return this.get("showers") != "none"; }.property('showers'),
 });
 
 // check for Geolocation support
