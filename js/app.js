@@ -21,6 +21,10 @@ App.router = new $.mobile.Router([
 
 App.parksController = Em.ArrayProxy.create();
 
+App.CampsiteDetailPageView = Em.View.extend({
+  campsiteBinding: "App.appController.campsite",
+});
+
 App.campsitesController = Em.ArrayProxy.create({
   // Initialize the array controller with an empty array.
   content: [],
