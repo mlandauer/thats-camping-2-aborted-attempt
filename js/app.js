@@ -23,6 +23,38 @@ App.parksController = Em.ArrayProxy.create();
 
 App.CampsiteDetailPageView = Em.View.extend({
   campsiteBinding: "App.appController.campsite",
+  facilitiesFields: {
+    have: ["picnic tables", "wood BBQs"],
+    notHave: ["toilets", "showers", "drinking water"]
+  },
+  accessFields: {
+    have: [],
+    notHave: ["caravans", "trailers", "car camping"],
+  },
+  haveFacilitiesText: function() {
+    return this.listAsText(this.get('facilitiesFields')["have"]);
+  }.property('facilitiesFields'),
+  notHaveFacilitiesText: function() {
+    return this.listAsText(this.get('facilitiesFields')["notHave"]);
+  }.property('facilitiesFields'),
+  haveAccessText: function() {
+    return this.listAsText(this.get('accessFields')["have"]);
+  }.property('accessFields'),
+  notHaveAccessText: function() {
+    return this.listAsText(this.get('accessFields')["notHave"]);
+  }.property('accessFields'),
+
+  listAsText: function(list) {
+    if (list.length == 0) {
+      return null;
+    }
+    else if (list.length == 1) {
+      return list[0];      
+    }
+    else {
+      return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];    
+    }
+  }
 });
 
 App.campsitesController = Em.ArrayProxy.create({

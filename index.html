@@ -52,22 +52,34 @@
 
         <h3>Facilities</h3>
         <ul data-inset="true" data-role="listview" data-theme="d" class="facilities">
+          {{#if haveFacilitiesText}}
           <li>
             <h4>Has:</h4>
-            <p>picnic tables and wood BBQs</p>
+            <p>{{haveFacilitiesText}}</p>
           </li>
+          {{/if}}
+          {{#if notHaveFacilitiesText}}
           <li>
             <h4>But no:</h4>
-            <p>toilets, showers and drinking water</p>
+            <p>{{notHaveFacilitiesText}}</p>
           </li>
+          {{/if}}
         </ul>
 
         <h3>Access</h3>
         <ul data-inset="true" data-role="listview" data-theme="d" class="access">
+          {{#if haveAccessText}}
+          <li>
+            <h4>For:</h4>
+            <p>{{haveAccessText}}</p>
+          </li>
+          {{/if}}
+          {{#if notHaveAccessText}}
           <li>
             <h4>Not for:</h4>
-            <p>caravans, trailers and car camping</p>
+            <p>{{notHaveAccessText}}</p>
           </li>
+          {{/if}}
         </ul>
 
       </div><!-- /content -->
