@@ -27,6 +27,48 @@ App.CampsiteDetailPageView = Em.View.extend({
     have: ["picnic tables", "wood BBQs"],
     notHave: ["toilets", "showers", "drinking water"]
   },
+  facilitiesFields: function() {
+    var campsite = this.get("campsite");
+    var have = [];
+    var notHave = [];
+    if (campsite) {
+      if (campsite.get('hasFlushToilets'))
+        have.push("flush toilets");
+      else if (campsite.get('hasNonFlushToilets'))
+        have.push("non-flush toilets");
+      else if (!campsite.get('toilets'))
+        notHave.push("toilets");
+
+      if (campsite.get('picnicTables'))
+        have.push("picnic tables");
+      else
+        notHave.push("picnic tables");
+      
+      // TODO: show whether you need to bring your own firewood elsewhere
+      // Like "You will need to bring firewood (if you want to use the wood BBQs) and drinking water"
+      if (campsite.get('hasWoodBarbecues'))
+        have.push("wood BBQs");
+      else if (campsite.get('hasGasElectricBarbecues'))
+        have.push("gas/electric BBQs");
+      else if (!campsite.get('hasBarbecues'))
+        notHave.push("BBQs");
+
+      if (campsite.get('hasHotShowers'))
+        have.push("hot showers");
+      else if (campsite.get('hasColdShowers'))
+        have.push("cold showers");
+      else if (!campsite.get("hasShowers"))
+        notHave.push("showers");
+
+      if (campsite.get("drinkingWater"))
+        have.push("drinking water");
+      else
+        notHave.push("drinking water");
+    }
+
+    return { have: have, notHave: notHave };
+  }.property('campsite'),
+
   accessFields: {
     have: [],
     notHave: ["caravans", "trailers", "car camping"],
