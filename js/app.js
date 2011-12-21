@@ -131,21 +131,39 @@ App.campsitesController = Em.ArrayProxy.create({
         return NO;
       }
     }, content);
-    return campsitesWithDistance.sort(function(a, b) {
-      var distanceA = a.get('distance'),
-          distanceB = b.get('distance');
+    // If there are no campsites with distance information (i.e the user location
+    // is not known) then just return a list sorted by name
+    if (campsitesWithDistance.length == 0) {
+      return content.sort(function(a, b) {
+        var shortNameA = a.get('shortName'), shortNameB = b.get('shortName');
+        if (shortNameA < shortNameB) {
+          return -1;
+        }
+        else if (shortNameA > shortNameB) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+    }
+    else {
+      return campsitesWithDistance.sort(function(a, b) {
+        var distanceA = a.get('distance'),
+            distanceB = b.get('distance');
 
-      if (distanceA < distanceB) {
-        return -1;
-      }
-      else if (distanceA > distanceB) {
-        return 1;
-      }
-      else {
-        return 0
-      }
-    });
-  }.property('@each.distance').cacheable(),
+        if (distanceA < distanceB) {
+          return -1;
+        }
+        else if (distanceA > distanceB) {
+          return 1;
+        }
+        else {
+          return 0
+        }
+      });      
+    }
+  }.property('@each.distance', '@each.shortName').cacheable(),
 
   updateUserPosition: function(latitude, longitude) {
     App.userPosition.set('latitude', latitude);
