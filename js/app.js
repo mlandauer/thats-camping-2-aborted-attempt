@@ -69,10 +69,28 @@ App.CampsiteDetailPageView = Em.View.extend({
     return { have: have, notHave: notHave };
   }.property('campsite'),
 
-  accessFields: {
-    have: [],
-    notHave: ["caravans", "trailers", "car camping"],
-  },
+  accessFields: function() {
+    var campsite = this.get("campsite");
+    var have = [];
+    var notHave = [];
+    if (campsite) {
+      if (campsite.get('caravans'))
+        have.push("caravans");
+      else
+        notHave.push("caravans");
+      if (campsite.get('trailers'))
+        have.push("trailers");
+      else
+        notHave.push("trailers");
+      if (campsite.get('car'))
+        have.push("car camping");
+      else
+        notHave.push("car camping");      
+    }
+
+    return { have: have, notHave: notHave };
+  }.property('campsite'),
+
   haveFacilitiesText: function() {
     return this.listAsText(this.get('facilitiesFields')["have"]);
   }.property('facilitiesFields'),
