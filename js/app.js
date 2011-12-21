@@ -154,6 +154,7 @@ App.campsitesController = Em.ArrayProxy.create({
 
   fetchParksAndCampsites: function(){
     $.ajax('/data/data.json', {
+      async: false,
       success: function(data){
         var all_parks = [];
         var all_campsites = [];
