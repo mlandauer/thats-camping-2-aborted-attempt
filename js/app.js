@@ -13,7 +13,6 @@ App.appController = Em.Object.create({
 
   },
   campsitesPage: function() {
-    console.log("campsitesPage");
     // Hide and unhide pages
     $('#campsite').hide();
     $('#info').hide();
@@ -26,13 +25,6 @@ App.appController = Em.Object.create({
     $('#info').show();
   }
 });
-
-/*
-App.router = new $.mobile.Router([
-  { "#campsites$": "campsitesPage" },
-  { "#campsite([?].*)?$": "campsiteDetailPage" },
-], App.appController);
-*/
 
 SC.routes.add('campsite/:id', App.appController, "campsiteDetailPage");
 SC.routes.add('', App.appController, "campsitesPage");
