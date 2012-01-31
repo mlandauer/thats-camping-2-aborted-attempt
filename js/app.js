@@ -1,23 +1,42 @@
 var App = Em.Application.create();
 
 App.appController = Em.Object.create({
-  campsiteDetailPage: function(eventType, matchObj) {
-    var webId = App.router.getParams(matchObj[1])["id"];
-    console.log("campsiteDetailPage webId", webId);
+  campsiteDetailPage: function(info) {
+    var webId = info["id"];
     // Load campsite based on the id
     var campsite = App.campsitesController.findProperty("webId", webId);
-    console.log("campsiteDetailPage campsite", campsite);
     App.appController.set("campsite", campsite);
+    // Hide and unhide pages
+    $('#campsites').hide();
+    $('#info').hide();
+    $('#campsite').show();
+
   },
   campsitesPage: function() {
     console.log("campsitesPage");
+    // Hide and unhide pages
+    $('#campsite').hide();
+    $('#info').hide();
+    $('#campsites').show();
+  },
+  infoPage: function() {
+    // Hide and unhide pages
+    $('#campsites').hide();
+    $('#campsite').hide();
+    $('#info').show();
   }
 });
 
+/*
 App.router = new $.mobile.Router([
   { "#campsites$": "campsitesPage" },
   { "#campsite([?].*)?$": "campsiteDetailPage" },
 ], App.appController);
+*/
+
+SC.routes.add('campsite/:id', App.appController, "campsiteDetailPage");
+SC.routes.add('', App.appController, "campsitesPage");
+SC.routes.add('info', App.appController, "infoPage");
 
 App.parksController = Em.ArrayProxy.create();
 
@@ -206,10 +225,6 @@ App.campsitesController = Em.ArrayProxy.create({
 });
 
 App.CampsiteView = Ember.View.extend({
-  didInsertElement: function() {
-    // VERY DUMB and slow - gets called on every single insert of a campsite into the DOM
-    $('#campsites ul').listview('refresh');
-  }
 });
 
 App.CampsitesView = Em.CollectionView.extend({
@@ -221,9 +236,6 @@ App.CampsitesView = Em.CollectionView.extend({
 
 view = Em.View.create({
   templateName: 'campsites', 
-  didInsertElement: function() {
-    $('#campsites ul').listview();
-  },
   contentBinding: 'App.campsitesController.sortedCampsites'
 });
 
@@ -353,7 +365,7 @@ App.Campsite = Em.Object.extend({
 
   campsiteUrl: function() {
     var webId = this.get("webId");
-    return "#campsite?id=" + webId;
+    return "#campsite/" + webId;
   }.property('webId'),
 
   // Convenience wrappers around some of the properties

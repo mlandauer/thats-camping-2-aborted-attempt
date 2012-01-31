@@ -3,7 +3,7 @@
   <head>
   <title>That's Camping!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/jquery.mobile-1.0.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   <script type="text/x-handlebars" data-template-name="campsites">
     {{#collection App.CampsitesView contentBinding="content" tagName="ul" classNames="home-list"}}
       <a {{bindAttr href="content.campsiteUrl"}} data-transition="none">
@@ -30,7 +30,7 @@
 
 </div><!-- /page -->
 
-<div data-role="page" id="campsite">
+<div data-role="page" id="campsite" style="display:none">
 
   <script type="text/x-handlebars">
     {{#view App.CampsiteDetailPageView}}
@@ -83,7 +83,7 @@
   </script>
 </div><!-- /page -->
 
-<div data-role="page" id="info">
+<div data-role="page" id="info" style="display:none">
   <div data-role="header" data-theme="b">
     <a href="index.html" data-icon="arrow-l" data-rel="back">Back</a>
     <h1>That's Campin!</h1>
@@ -118,9 +118,8 @@
 </div>
 
 <script type="text/javascript" src="js/libs/jquery-1.6.4.min.js"></script>
-<script type="text/javascript" src="js/libs/jquery.mobile.router-0.6.js"></script>
-<script type="text/javascript" src="js/libs/jquery.mobile-1.0.js"></script>
 <script type="text/javascript" src="js/libs/ember-0.9.1.js"></script>
+<script type="text/javascript" src="js/libs/sproutcore-routing.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 
 </body>
