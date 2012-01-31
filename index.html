@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <script type="text/x-handlebars" data-template-name="campsites">
-    {{#collection App.CampsitesView contentBinding="content" tagName="ul" classNames="home-list"}}
-      <a {{bindAttr href="content.campsiteUrl"}} data-transition="none">
-        <p class="ui-li-aside">
-          <strong>{{content.distanceAndBearingText}}</strong>
-        </p>
-        <h3>{{content.shortName}}</h3><p>{{content.parkShortName}}</p>
+    {{#collection App.CampsitesView contentBinding="content" tagName="ul" classNames="home-list nav"}}
+      <a {{bindAttr href="content.campsiteUrl"}}>
+        {{content.distanceAndBearingText}}
+        {{content.shortName}}
+        {{content.parkShortName}}
       </a>
     {{/collection}}
   </script>
@@ -18,13 +17,17 @@
 <body>
 <div data-role="page" id="campsites">
 
-  <div data-role="header" data-theme="b">
-    <a href="#" data-icon="refresh" data-iconpos="notext">Refresh location</a>
-    <h1>That's Campin!</h1>
-    <a href="#info" data-icon="info" data-iconpos="notext" data-transition="none">Info</a>
-  </div><!-- /header -->
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn" href="#"><i class="icon refresh"></i> Refresh location</a>
+        <a class="brand" href="#">That's Campin!</a>
+        <a class="btn info" href="#info"><i class="icon white info-sign"></i> Info</a>
+      </div>
+    </div>
+  </div>
 
-  <div data-role="content">
+  <div class="container content">
     <h2>Camping near you in NSW</h2>
   </div><!-- /content -->
 

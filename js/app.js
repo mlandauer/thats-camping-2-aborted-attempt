@@ -407,5 +407,5 @@ window.onload = function() {
 };
 
 App.campsitesController.fetchParksAndCampsites();
-view.appendTo('#campsites div[data-role="content"]');
+view.appendTo('#campsites div.container.content');
 
