@@ -7,9 +7,15 @@
   <script type="text/x-handlebars" data-template-name="campsites">
     {{#collection App.CampsitesView contentBinding="content" tagName="ul" classNames="home-list nav"}}
       <a {{bindAttr href="content.campsiteUrl"}}>
+        <div class="row">
+        <div class="span2">
         {{content.distanceAndBearingText}}
-        {{content.shortName}}
-        {{content.parkShortName}}
+        </div>
+        <div class="span10">
+          <div>{{content.shortName}}</div>
+          <div>{{content.parkShortName}}</div>
+        </div>
+        </div>
       </a>
     {{/collection}}
   </script>
