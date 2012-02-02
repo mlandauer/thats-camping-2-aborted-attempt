@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap.responsive.min.css" />
+  <link rel="stylesheet" href="css/style.css"
 </head>
 <body>
 <div data-role="page" id="campsites">
@@ -24,13 +25,13 @@
     <script type="text/x-handlebars">
       {{#collection contentBinding="App.campsitesController.sortedCampsites" tagName="ul" classNames="home-list nav"}}
         <a {{bindAttr href="content.campsiteUrl"}}>
-          <div class="row">
-          <div class="span2">
+          <div class="box">
+          <div class="blocka">
           {{content.distanceAndBearingText}}
           </div>
-          <div class="span10">
-            <div>{{content.shortName}}</div>
-            <div>{{content.parkShortName}}</div>
+          <div class="blockb">
+          <div>{{content.shortName}}</div>
+          <div>{{content.parkShortName}}</div>
           </div>
           </div>
         </a>

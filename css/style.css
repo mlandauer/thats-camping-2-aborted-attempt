@@ -1,29 +1,11 @@
-/* HOME */
-
-.footer .ui-block-b {
-  text-align: center;
+.box {
+  position: relative;
+  height: 3em;
 }
 
-.footer .ui-block-c a {
-  float: right;
-  right: 2em;
-}
-
-/* DETAIL */
-.footer.detail {
-  text-align: center;
-}
-
-p.ui-li-desc {
-  white-space: normal;
-}
-
-.facilities p, .access p {
-  display: inline;
-  font-size: 12px;
-}
-
-.facilities h4, .access h4 {
-  display:inline;
-  font-size: 12px;
+.blockb {
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
 }
