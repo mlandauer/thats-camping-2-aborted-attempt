@@ -125,7 +125,20 @@ App.CampsiteDetailPageView = Em.View.extend({
     else {
       return list.slice(0, -1).join(", ") + " and " + list[list.length - 1];    
     }
-  }
+  },
+
+  userLatitudeBinding: 'campsite.userLatitude',
+  userLongitudeBinding: 'campsite.userLongitude',
+  mapUrl: function() {
+    campsite = this.get('campsite');
+    userLongitude = this.get('userLongitude');
+    userLatitude = this.get('userLatitude');
+    console.log(campsite);
+    if (campsite && userLongitude && userLatitude) {
+      return "http://maps.google.com/maps?saddr=you+are+here@" + userLatitude + "," + userLongitude + "&daddr=" +
+        campsite.get("shortName") + "@" + campsite.get('latitude') + "," + campsite.get('longitude') + ")";
+    }
+  }.property('campsite', 'userLatitude', 'userLongitude')
 });
 
 App.campsitesController = Em.ArrayProxy.create({
