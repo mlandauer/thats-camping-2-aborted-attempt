@@ -4,21 +4,6 @@
   <title>That's Camping!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <script type="text/x-handlebars" data-template-name="campsites">
-    {{#collection App.CampsitesView contentBinding="content" tagName="ul" classNames="home-list nav"}}
-      <a {{bindAttr href="content.campsiteUrl"}}>
-        <div class="row">
-        <div class="span2">
-        {{content.distanceAndBearingText}}
-        </div>
-        <div class="span10">
-          <div>{{content.shortName}}</div>
-          <div>{{content.parkShortName}}</div>
-        </div>
-        </div>
-      </a>
-    {{/collection}}
-  </script>
 </head>
 <body>
 <div data-role="page" id="campsites">
@@ -35,6 +20,21 @@
 
   <div class="container content">
     <h2>Camping near you in NSW</h2>
+    <script type="text/x-handlebars">
+      {{#collection contentBinding="App.campsitesController.sortedCampsites" tagName="ul" classNames="home-list nav"}}
+        <a {{bindAttr href="content.campsiteUrl"}}>
+          <div class="row">
+          <div class="span2">
+          {{content.distanceAndBearingText}}
+          </div>
+          <div class="span10">
+            <div>{{content.shortName}}</div>
+            <div>{{content.parkShortName}}</div>
+          </div>
+          </div>
+        </a>
+      {{/collection}}
+    </script>
   </div><!-- /content -->
 
 </div><!-- /page -->

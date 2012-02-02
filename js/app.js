@@ -216,21 +216,6 @@ App.campsitesController = Em.ArrayProxy.create({
   }
 });
 
-App.CampsiteView = Ember.View.extend({
-});
-
-App.CampsitesView = Em.CollectionView.extend({
-  attributeBindings: ['data-role'],
-  'data-role': 'listview',
-  itemViewClass: App.CampsiteView
-});
-
-
-view = Em.View.create({
-  templateName: 'campsites', 
-  contentBinding: 'App.campsitesController.sortedCampsites'
-});
-
 App.userPosition = Em.Object.create({
   latitude: null,
   longitude: null  
@@ -399,5 +384,3 @@ window.onload = function() {
 };
 
 App.campsitesController.fetchParksAndCampsites();
-view.appendTo('#campsites div.container.content');
-
