@@ -54,7 +54,7 @@
 
       <div class="container content">
         <h2>{{campsite.longName}}</h2>
-        <a href="#">{{campsite.park.longName}}</a>
+        <a {{bindAttr href="campsite.park.path"}}>{{campsite.park.longName}}</a>
         <p>
           {{campsite.description}}
         </p>
@@ -89,6 +89,31 @@
     {{/view}}
   </script>
 </div><!-- /page -->
+
+<div data-role="page" id="park" style="display:none">
+  <script type="text/x-handlebars">
+    {{#view contentBinding="App.parksController.current"}}
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="#">That's Campin!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container content">
+        <h2>{{content.longName}}</h2>
+        <p>{{content.description}}</p>
+
+        {{#collection contentBinding="content.campsites" tagName="ul" classNames="nav nav-tabs nav-stacked"}}
+          <a {{bindAttr href="content.path"}}>
+            {{content.shortName}}
+          </a>
+        {{/collection}}
+      </div>
+    {{/view}}
+  </script>
+</div>
 
 <div data-role="page" id="info" style="display:none">
   <div class="navbar">

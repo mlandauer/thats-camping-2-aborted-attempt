@@ -6,18 +6,30 @@ App.appController = Em.Object.create(
     App.campsitesController.set "current", campsite
     # Hide and unhide pages
     $("#campsites").hide()
-    $("#info").hide()
     $("#campsite").show()
+    $('#park').hide()
+    $("#info").hide()
+
+  parkDetailPage: (info) ->
+    park = App.parksController.findProperty("webId", info["id"])
+    App.parksController.set "current", park
+    # Hide and unhide pages
+    $("#campsites").hide()
+    $("#campsite").hide()
+    $('#park').show()
+    $("#info").hide()
 
   campsitesPage: ->
     # Hide and unhide pages
-    $("#campsite").hide()
-    $("#info").hide()
     $("#campsites").show()
+    $("#campsite").hide()
+    $('#park').hide()
+    $("#info").hide()
 
   infoPage: ->
     # Hide and unhide pages
     $("#campsites").hide()
     $("#campsite").hide()
+    $('#park').hide()
     $("#info").show()
 )

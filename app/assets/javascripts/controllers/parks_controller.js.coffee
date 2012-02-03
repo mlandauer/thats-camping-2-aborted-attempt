@@ -1,1 +1,3 @@
-App.parksController = Em.ArrayProxy.create()
+App.parksController = Em.ArrayProxy.create(
+  content: []
+)

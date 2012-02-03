@@ -59,7 +59,7 @@ App.campsitesController = Em.ArrayProxy.create(
           App.campsitesController.pushObject campsite
 
         App.campsitesController.endPropertyChanges()
-        App.campsitesController.beginPropertyChanges()
+        App.parksController.beginPropertyChanges()
         all_parks.forEach (park) ->
           App.parksController.pushObject park
 

@@ -1,1 +1,3 @@
-App.Park = Em.Object.extend()
+App.Park = Em.Object.extend(
+  path: (-> "#park/" + @get("webId")).property("webId")
+)
