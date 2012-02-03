@@ -1,10 +1,3 @@
-App.userPosition = Em.Object.create({
-  latitude: null,
-  longitude: null  
-});
-
-App.Park = Em.Object.extend();
-
 function calculateDistance(lat1, lon1, lat2, lon2) {
   var R = 6371000; // m
   var dLat = (lat2 - lat1).toRad();
