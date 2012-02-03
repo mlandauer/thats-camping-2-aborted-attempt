@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+// Require ember and sproutcore-routing before anything
+//= require ember-0.9.1
+//= require sproutcore-routing
 //= require_tree .
