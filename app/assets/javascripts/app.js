@@ -133,7 +133,6 @@ App.CampsiteDetailPageView = Em.View.extend({
     campsite = this.get('campsite');
     userLongitude = this.get('userLongitude');
     userLatitude = this.get('userLatitude');
-    console.log(campsite);
     if (campsite && userLongitude && userLatitude) {
       return "http://maps.google.com/maps?saddr=you+are+here@" + userLatitude + "," + userLongitude + "&daddr=" +
         campsite.get("shortName") + "@" + campsite.get('latitude') + "," + campsite.get('longitude') + ")";
@@ -373,14 +372,6 @@ App.Campsite = Em.Object.extend({
   hasColdShowers: function() { return this.get("showers") == "cold"; }.property('showers'),
   hasShowers: function() { return this.get("showers") != "none"; }.property('showers'),
 });
-
-// check for Geolocation support
-if (navigator.geolocation) {
-  console.log('Geolocation is supported!');
-}
-else {
-  console.log('Geolocation is not supported for this Browser/OS version yet.');
-}
 
 window.onload = function() {
   var startPos;
