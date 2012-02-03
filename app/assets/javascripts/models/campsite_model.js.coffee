@@ -100,7 +100,7 @@ App.Campsite = Em.Object.extend(
     @get("park").get "shortName"
   ).property("park")
 
-  campsiteUrl: (->
+  path: (->
     webId = @get("webId")
     "#campsite/" + webId
   ).property("webId")

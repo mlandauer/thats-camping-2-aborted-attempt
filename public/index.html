@@ -22,7 +22,7 @@
     <h2>Camping near you in NSW</h2>
     <script type="text/x-handlebars">
       {{#collection contentBinding="App.campsitesController.sortedCampsites" tagName="ul" classNames="home-list nav nav-tabs nav-stacked"}}
-        <a {{bindAttr href="content.campsiteUrl"}}>
+        <a {{bindAttr href="content.path"}}>
           <div class="box">
           <div class="blocka">
           {{content.distanceAndBearingText}}
