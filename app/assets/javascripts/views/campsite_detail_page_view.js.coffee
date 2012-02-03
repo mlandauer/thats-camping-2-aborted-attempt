@@ -1,8 +1,5 @@
 App.CampsiteDetailPageView = Em.View.extend(
   campsiteBinding: "App.appController.campsite"
-  facilitiesFields:
-    have: [ "picnic tables", "wood BBQs" ]
-    notHave: [ "toilets", "showers", "drinking water" ]
 
   facilitiesFields: (->
     campsite = @get("campsite")
