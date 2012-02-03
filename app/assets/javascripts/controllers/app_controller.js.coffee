@@ -3,7 +3,7 @@ App.appController = Em.Object.create(
     webId = info["id"]
     # Load campsite based on the id
     campsite = App.campsitesController.findProperty("webId", webId)
-    App.appController.set "campsite", campsite
+    App.campsitesController.set "current", campsite
     # Hide and unhide pages
     $("#campsites").hide()
     $("#info").hide()

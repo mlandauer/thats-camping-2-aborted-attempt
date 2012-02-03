@@ -1,5 +1,5 @@
 App.CampsiteDetailPageView = Em.View.extend(
-  campsiteBinding: "App.appController.campsite"
+  campsiteBinding: "App.campsitesController.current"
 
   facilitiesFields: (->
     campsite = @get("campsite")
