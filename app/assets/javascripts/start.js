@@ -10,6 +10,6 @@ window.onload = function() {
   navigator.geolocation.watchPosition(function(position) {
     App.campsitesController.updateUserPosition(position.coords.latitude, position.coords.longitude);
   });
+  App.campsitesController.fetchParksAndCampsites();
 };
 
-App.campsitesController.fetchParksAndCampsites();
