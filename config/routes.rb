@@ -61,7 +61,9 @@ ThatsCamping2::Application.routes.draw do
     cache "data/data.json"
     cache "assets/application.css"
     cache "assets/application.js"
-
+    cache "assets/glyphicons-halflings-white.png"
+    cache "assets/glyphicons-halflings.png"
+  
     network "/"
   end
 
