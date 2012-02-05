@@ -44,6 +44,11 @@ App.Campsite = Em.Object.extend(
   car: null
   description: null
 
+  html_description: (->
+    description = @get("description")
+    "<p>" + description.replace("\n\n", "</p><p>") + "</p>"
+  ).property("description")
+
   # TODO: Should move to a view
   distanceAndBearingText: (->
     @get("distanceText") + " " + @get("bearingText")

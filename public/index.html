@@ -55,9 +55,7 @@
       <div class="container content">
         <h2>{{campsite.longName}}</h2>
         <a {{bindAttr href="campsite.park.path"}}>{{campsite.park.longName}}</a>
-        <p>
-          {{campsite.description}}
-        </p>
+        {{{campsite.html_description}}}
 
         <h3>Facilities</h3>
         <table class="table table-bordered">
@@ -103,7 +101,7 @@
 
       <div class="container content">
         <h2>{{content.longName}}</h2>
-        <p>{{content.description}}</p>
+        {{{content.html_description}}}
 
         {{#collection contentBinding="content.campsites" tagName="ul" classNames="nav nav-tabs nav-stacked"}}
           <a {{bindAttr href="content.path"}}>
