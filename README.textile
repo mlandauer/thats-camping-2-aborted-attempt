@@ -18,6 +18,8 @@ h2. Tech stuff
 
 This web app uses Twitter Boostrap 2 and Ember.js to make an app that works even when you don't have a network connection. This, of course, is most of the time when you're off camping somewhere.
 
+Prerequisites are an installed Ruby interpreter (v1.9.2) and git. rvm is definitely helpful (as always) but not absolutely necessary.
+
 To get a local development version running:
 
 git clone git@github.com:mlandauer/thats-camping-2.git
