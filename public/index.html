@@ -19,7 +19,10 @@
   </div>
 
   <div class="container content">
-    <h2>Camping near you in NSW</h2>
+    <div class="alert">
+      Loading campsites. This should only take a minute or so. Honest.
+    </div>
+    <h2 style="display:none">Camping near you in NSW</h2>
     <script type="text/x-handlebars">
       {{#collection contentBinding="App.campsitesController.sortedCampsites" tagName="ul" classNames="home-list nav nav-tabs nav-stacked"}}
         <a {{bindAttr href="content.path"}}>

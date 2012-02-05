@@ -64,4 +64,6 @@ App.campsitesController = Em.ArrayProxy.create(
           App.parksController.pushObject park
 
         App.parksController.endPropertyChanges()
+        $('#campsites .alert').hide()
+        $('#campsites h2').show()
 )
