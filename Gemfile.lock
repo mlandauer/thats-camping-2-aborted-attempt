@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/maccman/rack-offline.git
+  revision: 82838e2597ef31fa44d4ad27489e94bc596fdb6c
+  specs:
+    rack-offline (0.6.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,6 +112,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   pg
+  rack-offline!
   rails (= 3.2.1)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
