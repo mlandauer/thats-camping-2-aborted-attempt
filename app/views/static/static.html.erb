@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html manifest="application.manifest">
+  <head>
+  <title>That's Camping!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/application.css" />
+</head>
+<body>
+<div data-role="page" id="campsites">
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="#">That's Camping!</a>
+        <div class="pull-right">
+        <a class="btn" href="#"><i class="icon-refresh"></i><span style="display:none"> Refresh location</span></a>
+        <a class="btn" href="#info"><i class="icon-info-sign"></i><span style="display:none"> Info</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content">
+    <div class="alert">
+      Loading campsites. This should only take a minute or so. Honest.
+      <div class="progress progress-success progress-striped active">
+        <div class="bar" style="width: 100%;"></div>
+      </div>
+    </div>
+    <h2 style="display:none">Camping near you in NSW</h2>
+    <ul class="home-list nav nav-tabs nav-stacked">
+      <li>
+      <a href="#">
+        <div class="box">
+        <div class="blocka">
+        {{content.distanceAndBearingText}}
+        </div>
+        <div class="blockb">
+        <div>{{content.shortName}}</div>
+        <div>{{content.parkShortName}}</div>
+        </div>
+        </div>
+      </a>
+      </li>
+      <li>
+      <a href="#">
+        <div class="box">
+        <div class="blocka">
+        {{content.distanceAndBearingText}}
+        </div>
+        <div class="blockb">
+        <div>{{content.shortName}}</div>
+        <div>{{content.parkShortName}}</div>
+        </div>
+        </div>
+      </a>
+      </li>
+    </ul>
+  </div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="campsite" style="display:none">
+
+  <script type="text/x-handlebars">
+    {{#view App.CampsiteDetailPageView}}
+
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn" href="#"><i class="icon-arrow-left"></i> Camping near you in NSW</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container content">
+        <h2>{{campsite.longName}}</h2>
+        <a {{bindAttr href="campsite.park.path"}}>{{campsite.park.longName}}</a>
+        {{{campsite.html_description}}}
+
+        <h3>Facilities</h3>
+        <table class="table table-bordered">
+          <tr>
+            <td>Has:</td>
+            <td>{{haveFacilitiesText}}</td>
+          </tr>
+          <tr>
+            <td>But no:</td>
+            <td>{{notHaveFacilitiesText}}</td>
+          </tr>
+        </table>
+
+        <h3>Access</h3>
+        <table class="table table-bordered">
+          <tr>
+            <td>For:</td>
+            <td>{{haveAccessText}}</td>
+          </tr>
+          <tr>
+            <td>Not for:</td>
+            <td>{{notHaveAccessText}}</td>
+          </tr>
+        </table>
+
+        <a {{bindAttr href="mapUrl"}} class="btn">Directions to Campsite</a>
+
+      </div><!-- /content -->
+    {{/view}}
+  </script>
+</div><!-- /page -->
+
+<div data-role="page" id="park" style="display:none">
+  <script type="text/x-handlebars">
+    {{#view contentBinding="App.parksController.current"}}
+      <div class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="#">That's Campin!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container content">
+        <h2>{{content.longName}}</h2>
+        {{{content.html_description}}}
+
+        {{#collection contentBinding="content.campsites" tagName="ul" classNames="nav nav-tabs nav-stacked"}}
+          <a {{bindAttr href="content.path"}}>
+            {{content.shortName}}
+          </a>
+        {{/collection}}
+      </div>
+    {{/view}}
+  </script>
+</div>
+
+<div data-role="page" id="info" style="display:none">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn" href="#"><i class="icon arrow-left"></i> Back</a>
+        <a class="brand" href="#">That's Campin!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container content">
+    <h2>"Its raining and my weetbix is wet. <em>That's Campin!"</em></h2>
+
+    <p>The app's namesake is a yearly event when an extended group of friends
+    leave the city lights of Sydney behind to get together, go camping
+    and see in the new
+    year surrounded by good friends, good food and the delights of the
+    Australian bush.</p>
+
+    <p>That's Campin! was made by <a href="http://twitter.com/matthewlandauer">Matthew Landauer</a>. This version
+    is based on an iPhone app made by Matthew and <a href="http://twitter.com/katska">Kat Szuminska</a>.</p>
+
+    <p>Thanks to fellow enthusiasts at <a href="http://www.wildwalks.com">www.wildwalks.com</a> for the campsite
+    location data and the <a href="http://www.environment.nsw.gov.au/">NSW Department of Environment, Climate Change
+    and Water</a> (DECCW) for all other campsite and park details. We are in no
+    way affiliated with either DECCW or Wild Walks.</p>
+
+    <p>The "That's Campin!" icon design by Gabriel Clark.</p>
+
+    <p>When we're not making free things for fun on our holidays, we're making free and useful things for fun with the
+    OpenAustralia Foundation. Oops. Things like
+    the websites <a href="http://www.openaustralia.org">openaustralia.org</a>, which makes it really easy to see what your
+    politicians are doing and saying on your behalf in Federal parliament and
+    <a href="http://www.planningalerts.org.au">planningalerts.org.au</a>, which sends you emails when anyone in your area is planning
+    to build something or knock something down.</p>
+  </div>
+</div>
+
+<script type="text/javascript" src="assets/application.js"></script>
+
+</body>
+</html>

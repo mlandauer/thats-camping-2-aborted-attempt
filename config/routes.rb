@@ -47,6 +47,7 @@ ThatsCamping2::Application.routes.draw do
   #   end
 
   root :to => 'static#index'
+  match 'static' => 'static#static'
 
   # See how all your routes lay out with "rake routes"
 
